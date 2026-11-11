@@ -1,0 +1,28 @@
+(version 1)
+# PocketBrain board rules.
+# The same limits are set in Board Setup and in the Power net class, but those live in the
+# project file, which KiCad rewrites. These rules keep DRC and the router consistent if
+# the project file is ever reset.
+
+(rule "Minimum clearance"
+	(constraint clearance (min 0.15mm)))
+
+(rule "Minimum track width"
+	(constraint track_width (min 0.15mm)))
+
+(rule "Via size"
+	(constraint via_diameter (min 0.5mm))
+	(constraint annular_width (min 0.1mm)))
+
+(rule "Minimum drill"
+	(constraint hole_size (min 0.2mm)))
+
+(rule "Hole clearance"
+	(constraint hole_clearance (min 0.15mm)))
+
+(rule "Copper to board edge"
+	(constraint edge_clearance (min 0.25mm)))
+
+(rule "Power nets"
+	(condition "A.NetName == 'VBUS' || A.NetName == 'VSYS' || A.NetName == '+BATT' || A.NetName == '+3V3' || A.NetName == '+15V' || A.NetName == 'Net-(U3-L1)' || A.NetName == 'Net-(U3-L2)' || A.NetName == 'Net-(U6-SW)' || A.NetName == 'Net-(J4-Pin_1)' || A.NetName == 'Net-(J4-Pin_2)'")
+	(constraint track_width (min 0.15mm) (opt 0.4mm)))

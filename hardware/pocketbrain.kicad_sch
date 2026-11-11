@@ -1,0 +1,1026 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "7bb31cdc-15dc-530d-96b6-5f022bcdf838")
+	(paper "A4")
+	(title_block
+		(title "PocketBrain system overview")
+		(date "2026-11-11")
+		(rev "0.3")
+		(company "PocketBrain")
+		(comment 1 "One-handed, battery-powered voice assistant")
+		(comment 2 "Schematic draft for bench bring-up; verify items marked CHECK")
+	)
+	(lib_symbols)
+	(rectangle
+		(start 15.24 132.08)
+		(end 127 185.42)
+		(stroke
+			(width 0.15)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "354a7bae-be6b-501d-9db1-fd6865a42f9e")
+	)
+	(rectangle
+		(start 132.08 132.08)
+		(end 172.72 185.42)
+		(stroke
+			(width 0.15)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "6ea5334b-05d7-54e4-97b2-a4bba94350a0")
+	)
+	(text "USB-C, BQ24074 charger,\nTPS63802 3.3 V"
+		(exclude_from_sim no)
+		(at 38.1 69.215 0)
+		(effects
+			(font
+				(size 1 1)
+				(italic yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "039368da-c47c-5567-88af-5211d27724de")
+	)
+	(text "ESP32-S3-WROOM-1-N16R8\nreset, boot, debug UART"
+		(exclude_from_sim no)
+		(at 152.4 81.28 0)
+		(effects
+			(font
+				(size 1 1)
+				(italic yes)
+			)
+			(justify bottom)
+		)
+		(uuid "045a1191-7b55-582b-9961-41d0b31a417e")
+	)
+	(text "CHECK before PCB layout:\n1. OLED flex on the TCC panel:\n   pinout, length, contacts\n   facing the display front.\n2. Battery lead polarity\n   (J2: pin 1 = cell +).\n3. Fit-check Talk switch\n   (TS-1101VS) and wheel\n   (SIQ-02FVS3) in the shell;\n   both sit on a board edge.\n4. Wheel: B is undefined at\n   the detent. Decode on A\n   edges in firmware.\n5. Firmware: drive IO8 and\n   IO9, read IO1 / IO2 / IO21."
+		(exclude_from_sim no)
+		(at 134.62 138.43 0)
+		(effects
+			(font
+				(size 1.1 1.1)
+			)
+			(justify left top)
+		)
+		(uuid "35eabe0e-3f2c-56b1-8d00-f1da74a7875a")
+	)
+	(text "Reset\nBOOT\nVBAT_SENSE\nCHG_N\nI2S_BCLK\nI2S_WS\nI2S_MIC_DATA\nI2S_AMP_DATA\nAMP_EN\nOLED_VCC_EN\nOLED_CS_N\nOLED_MOSI\nOLED_SCLK\nOLED_DC\nOLED_RST_N\nTALK_N\nWHEEL_SW_N\nWHEEL_A\nWHEEL_B\nUSB_DN / USB_DP\nPGOOD_N\nUART_TX / UART_RX"
+		(exclude_from_sim no)
+		(at 43.18 138.43 0)
+		(effects
+			(font
+				(size 1.1 1.1)
+			)
+			(justify left top)
+		)
+		(uuid "3971a0c8-7f3e-5e9b-8e6c-3cda67cec45b")
+	)
+	(text "Talk button,\nencoder wheel + push"
+		(exclude_from_sim no)
+		(at 38.1 120.015 0)
+		(effects
+			(font
+				(size 1 1)
+				(italic yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "3ab53d22-26f0-5d01-b10e-30d7e8315957")
+	)
+	(text "RC + RESET button\nstrapping, BOOT button\nADC1_CH0, VBAT / 2\nlow = charging\nmic + amp\nmic + amp\nmic to MCU\nMCU to amp\nnew: PB_AMP_SD_PIN = 8\nnew: 15 V boost enable\n\n\n\n\n\nRTC wake\nRTC wake\n\n\nnative USB\nlow = USB power present\ndebug header"
+		(exclude_from_sim no)
+		(at 78.74 138.43 0)
+		(effects
+			(font
+				(size 1.1 1.1)
+			)
+			(justify left top)
+		)
+		(uuid "496a11f6-c9b6-5554-bcdc-b96a327f3756")
+	)
+	(text "System overview. Each block is one sheet. Power rails (VBUS, +BATT, VSYS, +3V3, +15V, GND) are global."
+		(exclude_from_sim no)
+		(at 17.78 27.94 0)
+		(effects
+			(font
+				(size 1.5 1.5)
+			)
+			(justify left bottom)
+		)
+		(uuid "8ec9e136-0ecd-5def-b437-35def2513bd7")
+	)
+	(text "2.7\" 256x128 OLED FPC,\n15 V boost"
+		(exclude_from_sim no)
+		(at 266.7 122.555 0)
+		(effects
+			(font
+				(size 1 1)
+				(italic yes)
+			)
+			(justify right bottom)
+		)
+		(uuid "99384807-6086-52fc-b0b7-1c6695213733")
+	)
+	(text "OPEN ITEMS"
+		(exclude_from_sim no)
+		(at 133.985 135.89 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "af29917e-6b3a-5485-9aec-dda90643face")
+	)
+	(text "GPIO MAP"
+		(exclude_from_sim no)
+		(at 17.145 135.89 0)
+		(effects
+			(font
+				(size 1.8 1.8)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "b74f11a7-a476-5984-b42b-4fe7f7004097")
+	)
+	(text "EN\nIO0\nIO1\nIO2\nIO4\nIO5\nIO6\nIO7\nIO8\nIO9\nIO10\nIO11\nIO12\nIO13\nIO14\nIO15\nIO16\nIO17\nIO18\nIO19 / IO20\nIO21\nIO43 / IO44"
+		(exclude_from_sim no)
+		(at 17.78 138.43 0)
+		(effects
+			(font
+				(size 1.1 1.1)
+			)
+			(justify left top)
+		)
+		(uuid "ba9793c8-1e14-56c3-903f-62a6641491ec")
+	)
+	(text "PocketBrain"
+		(exclude_from_sim no)
+		(at 17.78 22.86 0)
+		(effects
+			(font
+				(size 4 4)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "e318e14e-81b5-5f26-867b-24f4656b103c")
+	)
+	(text "SPH0645 I2S mic,\nMAX98357A + speaker"
+		(exclude_from_sim no)
+		(at 266.7 69.215 0)
+		(effects
+			(font
+				(size 1 1)
+				(italic yes)
+			)
+			(justify right bottom)
+		)
+		(uuid "e98be566-e1db-56d9-919d-338ffd82b2ee")
+	)
+	(wire
+		(pts
+			(xy 86.36 60.96) (xy 124.46 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "005ca8f7-f87d-5102-9f61-2fe8044c14dd")
+	)
+	(wire
+		(pts
+			(xy 86.36 55.88) (xy 124.46 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0bf80ffd-0856-5d23-ae9c-d9d0afb2eec1")
+	)
+	(wire
+		(pts
+			(xy 180.34 66.04) (xy 218.44 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e2c50bc-286b-5cbc-8381-ebb2c9588b4a")
+	)
+	(wire
+		(pts
+			(xy 86.36 106.68) (xy 124.46 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "19bfc2f2-5a91-5edc-b6e1-7b7631038c09")
+	)
+	(wire
+		(pts
+			(xy 180.34 93.98) (xy 218.44 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "283a3267-e8c5-572f-8c6e-e0132e323070")
+	)
+	(wire
+		(pts
+			(xy 180.34 60.96) (xy 218.44 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "32d62845-db66-53b2-9020-ea91332bf482")
+	)
+	(wire
+		(pts
+			(xy 180.34 104.14) (xy 218.44 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3399b8b7-1e8b-555d-9988-3994cac7d9f5")
+	)
+	(wire
+		(pts
+			(xy 86.36 50.8) (xy 124.46 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "41175929-0790-507e-9b1c-e85109393e54")
+	)
+	(wire
+		(pts
+			(xy 180.34 99.06) (xy 218.44 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50c2c17c-4aaa-534a-b79d-b76c0d8eb532")
+	)
+	(wire
+		(pts
+			(xy 180.34 50.8) (xy 218.44 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "53913591-587b-5884-bd29-3328b40ddd04")
+	)
+	(wire
+		(pts
+			(xy 180.34 109.22) (xy 218.44 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "53bf6738-932d-5049-86c3-cc2d3cfbe0d6")
+	)
+	(wire
+		(pts
+			(xy 180.34 119.38) (xy 218.44 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "655b88d4-5e59-5dec-9eca-7b3ff43ebfab")
+	)
+	(wire
+		(pts
+			(xy 180.34 55.88) (xy 218.44 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "783cfaa9-4e8d-5a7a-a3ec-e86fa022d0c5")
+	)
+	(wire
+		(pts
+			(xy 180.34 45.72) (xy 218.44 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8266dfe8-0515-583f-83d6-f10d117b1b15")
+	)
+	(wire
+		(pts
+			(xy 86.36 66.04) (xy 124.46 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8d0bdd0d-6339-588d-81c1-30ed40f06dce")
+	)
+	(wire
+		(pts
+			(xy 86.36 45.72) (xy 124.46 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ebedfc0-cf02-5a74-b0da-75bc2beb7ff1")
+	)
+	(wire
+		(pts
+			(xy 86.36 101.6) (xy 124.46 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a374ab0e-8797-5aa5-92a3-1582b38cd081")
+	)
+	(wire
+		(pts
+			(xy 86.36 111.76) (xy 124.46 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a47a9a2f-99ed-5541-ad65-27b03fb3d318")
+	)
+	(wire
+		(pts
+			(xy 180.34 114.3) (xy 218.44 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "de72c12d-5a7e-596f-a4f5-a3cdd6c70350")
+	)
+	(wire
+		(pts
+			(xy 86.36 116.84) (xy 124.46 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ee095c74-464b-5614-9102-b29f01c6ba35")
+	)
+	(sheet
+		(at 218.44 38.1)
+		(size 50.8 33.02)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill
+			(color 255 255 194 0.35)
+		)
+		(uuid "0abcef0f-f242-51e8-8209-939df250d4cb")
+		(property "Sheetname" "Audio"
+			(at 218.44 37.338 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.8 1.8)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "audio.kicad_sch"
+			(at 218.44 71.882 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left top)
+			)
+		)
+		(pin "I2S_BCLK" input
+			(at 218.44 45.72 180)
+			(uuid "6db4783b-86c3-5dbf-b071-ccc68e1677c6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "I2S_WS" input
+			(at 218.44 50.8 180)
+			(uuid "147feed5-2c9d-53c2-a6a0-bcd1f06915c2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "I2S_AMP_DATA" input
+			(at 218.44 55.88 180)
+			(uuid "2eb32f7c-b179-5dcd-9dec-cecace4f1150")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "I2S_MIC_DATA" output
+			(at 218.44 60.96 180)
+			(uuid "ac0ba2e8-d9f0-5097-a7bc-e1b531983f84")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "AMP_EN" input
+			(at 218.44 66.04 180)
+			(uuid "c658a509-2410-5373-9c21-a3c0bbf78ab6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "pocketbrain"
+				(path "/7bb31cdc-15dc-530d-96b6-5f022bcdf838"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 218.44 86.36)
+		(size 50.8 38.1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill
+			(color 255 255 194 0.35)
+		)
+		(uuid "15ac650b-2cfc-51cc-9588-21780dfc67fd")
+		(property "Sheetname" "Display"
+			(at 218.44 85.598 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.8 1.8)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "display.kicad_sch"
+			(at 218.44 125.222 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left top)
+			)
+		)
+		(pin "OLED_SCLK" input
+			(at 218.44 93.98 180)
+			(uuid "2080fecc-4b0c-5257-af80-e5c2e6777731")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OLED_MOSI" input
+			(at 218.44 99.06 180)
+			(uuid "5b612e78-c6e3-536f-a509-18c45f016bd2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OLED_CS_N" input
+			(at 218.44 104.14 180)
+			(uuid "55c60b14-1a59-5137-9116-7a6dfc85f984")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OLED_DC" input
+			(at 218.44 109.22 180)
+			(uuid "630123d2-0825-5a30-9051-a31df695016f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OLED_RST_N" input
+			(at 218.44 114.3 180)
+			(uuid "0f600eb3-c541-59ea-92cb-4fde87db8675")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OLED_VCC_EN" input
+			(at 218.44 119.38 180)
+			(uuid "5f2314ee-74d0-5d22-a2f6-d135b10ab99b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "pocketbrain"
+				(path "/7bb31cdc-15dc-530d-96b6-5f022bcdf838"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 124.46 38.1)
+		(size 55.88 86.36)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill
+			(color 255 255 194 0.35)
+		)
+		(uuid "9a8e8788-ebcd-5d9d-bca4-ba5ef8d77673")
+		(property "Sheetname" "MCU"
+			(at 124.46 37.338 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.8 1.8)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "mcu.kicad_sch"
+			(at 124.46 125.222 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left top)
+			)
+		)
+		(pin "USB_DP" bidirectional
+			(at 124.46 45.72 180)
+			(uuid "248fd209-dabf-5110-914f-071a91a13752")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "USB_DN" bidirectional
+			(at 124.46 50.8 180)
+			(uuid "00253f44-ea18-5fa1-8036-b09e723d42d8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "VBAT_SENSE" input
+			(at 124.46 55.88 180)
+			(uuid "6eadb973-953f-590e-bf50-bb524588ef88")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CHG_N" input
+			(at 124.46 60.96 180)
+			(uuid "3e03f4c6-ab42-5b2a-a339-635754706097")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "PGOOD_N" input
+			(at 124.46 66.04 180)
+			(uuid "4d6e8cd4-36c2-5c00-8127-c1874d10b3b9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "TALK_N" input
+			(at 124.46 101.6 180)
+			(uuid "67ab9c23-580f-54be-b4bc-18ee6586b7b0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "WHEEL_SW_N" input
+			(at 124.46 106.68 180)
+			(uuid "58e839bf-7b60-528f-b0d6-021dcaed9401")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "WHEEL_A" input
+			(at 124.46 111.76 180)
+			(uuid "48fda298-a07d-5dd1-a981-9685ab24a47d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "WHEEL_B" input
+			(at 124.46 116.84 180)
+			(uuid "cee53d38-78d6-5caa-9269-52837d55d5e8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "I2S_BCLK" output
+			(at 180.34 45.72 0)
+			(uuid "e0ea778f-6975-57fc-bb54-79c49589ee18")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "I2S_WS" output
+			(at 180.34 50.8 0)
+			(uuid "4e005ee2-5c9f-5e0b-93d9-b447f6a19f1d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "I2S_AMP_DATA" output
+			(at 180.34 55.88 0)
+			(uuid "3f51d05a-1507-53ed-8574-7b693f64e1c5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "I2S_MIC_DATA" input
+			(at 180.34 60.96 0)
+			(uuid "e22d2733-27c1-57fa-835b-94f671df4ed3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "AMP_EN" output
+			(at 180.34 66.04 0)
+			(uuid "7e993e21-20dc-59ca-9ab3-52a079951073")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OLED_SCLK" output
+			(at 180.34 93.98 0)
+			(uuid "b48dde6f-f80f-5803-8494-e260c79e9e6e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OLED_MOSI" output
+			(at 180.34 99.06 0)
+			(uuid "7eb618d6-3859-5c2a-a439-64e14c76067c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OLED_CS_N" output
+			(at 180.34 104.14 0)
+			(uuid "db115e89-098c-5a7f-8f64-207ef73a031a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OLED_DC" output
+			(at 180.34 109.22 0)
+			(uuid "04607ad5-e2e9-53cf-89cd-1ad22a053cc9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OLED_RST_N" output
+			(at 180.34 114.3 0)
+			(uuid "c83b03ae-611d-57ef-9f22-c77e2936e626")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OLED_VCC_EN" output
+			(at 180.34 119.38 0)
+			(uuid "52565505-fb2e-537f-a364-11088c33db3e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "pocketbrain"
+				(path "/7bb31cdc-15dc-530d-96b6-5f022bcdf838"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 35.56 93.98)
+		(size 50.8 27.94)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill
+			(color 255 255 194 0.35)
+		)
+		(uuid "a7a8e3e9-c086-5fd2-9c60-4e7040499ab6")
+		(property "Sheetname" "Controls"
+			(at 35.56 93.218 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.8 1.8)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "controls.kicad_sch"
+			(at 35.56 122.682 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left top)
+			)
+		)
+		(pin "TALK_N" output
+			(at 86.36 101.6 0)
+			(uuid "2daf3616-f9ef-5bb0-90bd-207fa822c9e5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "WHEEL_SW_N" output
+			(at 86.36 106.68 0)
+			(uuid "76b0a696-5ad7-5c1f-b057-1b3b21d36afe")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "WHEEL_A" output
+			(at 86.36 111.76 0)
+			(uuid "c893864f-4d53-5d8f-b04d-a75278c7bd3a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "WHEEL_B" output
+			(at 86.36 116.84 0)
+			(uuid "0ef7ca31-31e6-5ad4-84ac-904af044b4bd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "pocketbrain"
+				(path "/7bb31cdc-15dc-530d-96b6-5f022bcdf838"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 35.56 38.1)
+		(size 50.8 33.02)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill
+			(color 255 255 194 0.35)
+		)
+		(uuid "d4a79881-3ff7-5af6-b81c-77e0d43d73e5")
+		(property "Sheetname" "Power"
+			(at 35.56 37.338 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.8 1.8)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power.kicad_sch"
+			(at 35.56 71.882 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left top)
+			)
+		)
+		(pin "USB_DP" bidirectional
+			(at 86.36 45.72 0)
+			(uuid "ca9547a5-ca44-558a-b2f0-c78af69b9ed7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "USB_DN" bidirectional
+			(at 86.36 50.8 0)
+			(uuid "a6210e0f-519a-5878-b07d-24c909486d65")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "VBAT_SENSE" output
+			(at 86.36 55.88 0)
+			(uuid "97b09003-6988-5f4f-96b7-69f94be55f17")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CHG_N" output
+			(at 86.36 60.96 0)
+			(uuid "7b73690d-7c1e-5d2c-b4b4-e9d9f1e8d4e9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "PGOOD_N" output
+			(at 86.36 66.04 0)
+			(uuid "58a4de49-45e8-55ef-aac8-46785337729f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "pocketbrain"
+				(path "/7bb31cdc-15dc-530d-96b6-5f022bcdf838"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

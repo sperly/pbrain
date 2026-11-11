@@ -1,0 +1,150 @@
+(footprint "Thermistor_Semitec_JT_Leads_P1.8mm"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Solder point for a Semitec JT thin film thermistor (103JT-025 and the longer lengths): two flat tin plated leads, 0.5x0.17 mm, 1.8 mm pitch, 5 mm long. Insert the leads through the 0.8 mm holes or lap-solder them on the oval pads from either side. Keep the iron away from the film: Semitec limits the sensor film to 150 C. Dimensions per Semitec JT Thermistor data sheet.")
+	(tags "thermistor NTC Semitec JT 103JT 103JT-025 battery temperature")
+	(property "Reference" "REF**"
+		(at 0 -2.5 0)
+		(layer "F.SilkS")
+		(uuid "a14f8374-78e1-481b-b559-ecfe27e16906")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "Thermistor_Semitec_JT_Leads_P1.8mm"
+		(at 0 2.5 0)
+		(layer "F.Fab")
+		(uuid "2160d2ae-d18b-40a1-8d6f-8b5719769212")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.semitec-global.com/uploads/2022/01/P9-JT-Thermistor.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8bf81aa1-206c-45c6-a864-cc91823954cf")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Solder point for a Semitec JT thin film thermistor (103JT-025 and the longer lengths): two flat tin plated leads, 0.5x0.17 mm, 1.8 mm pitch, 5 mm long. Insert the leads through the 0.8 mm holes or lap-solder them on the oval pads from either side. Keep the iron away from the film: Semitec limits the sensor film to 150 C. Dimensions per Semitec JT Thermistor data sheet."
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2d24a538-03f6-4a4f-b117-cad12b140828")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.76 -1.36)
+		(end 1.76 1.36)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "eb5f2c46-f1da-4750-96c5-4d3e0038d040")
+	)
+	(fp_rect
+		(start -2 -1.6)
+		(end 2 1.6)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "0ec3f342-7ee0-4091-a803-1799db2e19fe")
+	)
+	(fp_rect
+		(start -1.5 -1.1)
+		(end 1.5 1.1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "f32aa9ee-7a4a-495c-a5ab-25e206b992b3")
+	)
+	(fp_rect
+		(start -1.15 -0.085)
+		(end -0.65 0.085)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "b650c797-e519-40ed-9b54-7a87f05f6d21")
+	)
+	(fp_rect
+		(start 0.65 -0.085)
+		(end 1.15 0.085)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "3c36bcbc-7717-40de-8f75-f71871d66d5d")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -0.65 0)
+		(layer "F.Fab")
+		(uuid "d1e011de-3509-481a-91dd-ab9b4e6c2682")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(pad "1" thru_hole oval
+		(at -0.9 0)
+		(size 1.2 2.2)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "f6bd9340-ef6f-44d7-81d5-209fc2436885")
+	)
+	(pad "2" thru_hole oval
+		(at 0.9 0)
+		(size 1.2 2.2)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "603ceefd-54a4-4a28-b0ad-56307374208a")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/pocketbrain.3dshapes/Thermistor_Semitec_JT_Leads_P1.8mm.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

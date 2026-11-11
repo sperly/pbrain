@@ -1,0 +1,79 @@
+menu "PocketBrain"
+config PB_BACKEND_URL
+    string "Backend HTTPS base URL (without api.php)"
+    default "https://peabrain.se"
+config PB_PROVISION_POP
+    string "BLE provisioning proof of possession (change per device)"
+    default ""
+    help
+        Required to start BLE provisioning. Set a unique value for each device.
+config PB_TALK_PIN
+    int "Talk GPIO (RTC capable, active low)"
+    range 0 21
+    default 15
+config PB_WHEEL_PUSH_PIN
+    int "Wheel push GPIO (RTC capable, active low)"
+    range 0 21
+    default 16
+config PB_WHEEL_A_PIN
+    int "Encoder A GPIO (-1 disables encoder)"
+    range -1 48
+    default 17
+config PB_WHEEL_B_PIN
+    int "Encoder B GPIO (-1 disables encoder)"
+    range -1 48
+    default 18
+config PB_BCLK_PIN
+    int "I2S BCLK GPIO"
+    range 0 48
+    default 4
+config PB_WS_PIN
+    int "I2S word select GPIO"
+    range 0 48
+    default 5
+config PB_MIC_PIN
+    int "I2S microphone data GPIO"
+    range 0 48
+    default 6
+config PB_SPEAKER_PIN
+    int "I2S amplifier data GPIO"
+    range 0 48
+    default 7
+config PB_AMP_SD_PIN
+    int "Amplifier shutdown GPIO (-1 when not wired)"
+    range -1 48
+    default -1
+config PB_MIC_SHIFT
+    int "Microphone signed 32-bit slot shift to PCM16"
+    range 8 16
+    default 16
+    help
+        Start at 16. Check SPH0645 sample alignment and amplitude on hardware.
+config PB_IDLE_SECONDS
+    int "Idle timeout before deep sleep (0 disables)"
+    range 0 3600
+    default 120
+config PB_OLED_ENABLED
+    bool "Enable SSD1363 OLED (requires correctly powered panel)"
+    default y
+config PB_OLED_CS_PIN
+    int "OLED chip select GPIO"
+    range 0 48
+    default 10
+config PB_OLED_MOSI_PIN
+    int "OLED SPI data GPIO"
+    range 0 48
+    default 11
+config PB_OLED_CLK_PIN
+    int "OLED SPI clock GPIO"
+    range 0 48
+    default 12
+config PB_OLED_DC_PIN
+    int "OLED data/command GPIO"
+    range 0 48
+    default 13
+config PB_OLED_RESET_PIN
+    int "OLED reset GPIO"
+    range 0 48
+    default 14
+endmenu

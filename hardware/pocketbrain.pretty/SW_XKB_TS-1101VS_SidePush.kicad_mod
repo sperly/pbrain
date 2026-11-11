@@ -1,0 +1,285 @@
+(footprint "SW_XKB_TS-1101VS_SidePush"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "XKB Connection TS-1101VS-x-A-A side-actuated SMD tactile switch with two locating pegs, body 7.0x2.5 mm, 3.45 mm high, actuator 3.0x1.5 mm pointing to -Y and protruding 1.0 mm. Land pattern per XKB drawing TS-1101VS-B-A-A rev A1. Origin is midway between the pegs. Pads SH are the metal cover legs. Keep the board edge on the Cmts.User line or further out. LCSC C561499 (TS-1101VS-B-A-A, 160 gf), alternative C318936 (TS-1101VS-C-A-A, 260 gf).")
+	(tags "tactile switch side push right angle XKB TS-1101VS")
+	(property "Reference" "REF**"
+		(at 0 3.4 0)
+		(layer "F.SilkS")
+		(uuid "fc94bb62-1401-4447-8574-8d56ecd5e250")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SW_XKB_TS-1101VS_SidePush"
+		(at 0 4.9 0)
+		(layer "F.Fab")
+		(uuid "f3a17f08-b069-4a85-9b62-80c615d85fb4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/1f728d575f441d1a8297b3e5ec8166c5.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "edeb0a87-dbd5-4f22-8877-929813f8e732")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "XKB Connection TS-1101VS-x-A-A side-actuated SMD tactile switch with two locating pegs, body 7.0x2.5 mm, 3.45 mm high, actuator 3.0x1.5 mm pointing to -Y and protruding 1.0 mm. Land pattern per XKB drawing TS-1101VS-B-A-A rev A1. Origin is midway between the pegs. Pads SH are the metal cover legs. Keep the board edge on the Cmts.User line or further out. LCSC C561499 (TS-1101VS-B-A-A, 160 gf), alternative C318936 (TS-1101VS-C-A-A, 260 gf)."
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6d66e8bd-75ef-47ca-80fc-3f8b48c49650")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -3.61 0.7)
+		(end -3.61 1.41)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "87a17ef7-192c-4880-bd47-fde97bc3cc57")
+	)
+	(fp_line
+		(start -3.61 1.41)
+		(end -2.9 1.41)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4215a628-bd05-4e01-aed7-b3e94328e492")
+	)
+	(fp_line
+		(start -1.75 -1.11)
+		(end -2.6 -1.11)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "853700d0-1f60-48d7-8d85-771bb4399339")
+	)
+	(fp_line
+		(start -1.3 1.41)
+		(end 1.3 1.41)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "040c35e0-6575-45b1-a98c-9f986a748459")
+	)
+	(fp_line
+		(start 1.75 -1.11)
+		(end 2.6 -1.11)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "ca5679ad-6e38-4f67-b81d-5d40c0a9c124")
+	)
+	(fp_line
+		(start 3.61 0.7)
+		(end 3.61 1.41)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "78b2f621-1ad2-47b7-b214-9aa40d9bc2dc")
+	)
+	(fp_line
+		(start 3.61 1.41)
+		(end 2.9 1.41)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "cb29ca92-ad70-4546-8c9d-5551908f6f87")
+	)
+	(fp_line
+		(start -4.5 -1.5)
+		(end 4.5 -1.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "Cmts.User")
+		(uuid "6cf09953-2791-4c0c-b7d8-1ee7b530d864")
+	)
+	(fp_rect
+		(start -4.35 -2.25)
+		(end 4.35 2.45)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "4e5b3a7d-6a29-4234-a71d-475092fb12ba")
+	)
+	(fp_rect
+		(start -3.5 -1)
+		(end -3.9 0.3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "d1ed39e4-d497-4fc6-beb9-2509788bc36c")
+	)
+	(fp_rect
+		(start -3.5 -1)
+		(end 3.5 1.3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "11997eb5-8147-4459-a5fb-4ef01a42f262")
+	)
+	(fp_rect
+		(start -1.8 1.3)
+		(end -2.4 1.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "7fd21685-2982-4bf6-9d23-a106973fc357")
+	)
+	(fp_rect
+		(start -1.5 -2)
+		(end 1.5 -1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "7a8b9430-bc74-448b-8a94-71763ceda36b")
+	)
+	(fp_rect
+		(start 1.8 1.3)
+		(end 2.4 1.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "b3f36536-137e-42ac-9abe-d213e1f7b936")
+	)
+	(fp_rect
+		(start 3.5 -1)
+		(end 3.9 0.3)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "107fde38-8fea-49e4-a704-95ce9a7fee4c")
+	)
+	(fp_text user "board edge here or further out"
+		(at 0 -2.75 0)
+		(layer "Cmts.User")
+		(uuid "45aab300-31b0-41ce-b8c4-67d9d6a89f2d")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0.75 0)
+		(layer "F.Fab")
+		(uuid "c303bdbc-c190-4943-8c89-e1a6521e90f0")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.075)
+			)
+		)
+	)
+	(pad "" np_thru_hole circle
+		(at -1.15 0)
+		(size 0.9 0.9)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(uuid "b41b93e2-fdb5-488b-bb69-5ee3c185870b")
+	)
+	(pad "" np_thru_hole circle
+		(at 1.15 0)
+		(size 0.9 0.9)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(uuid "2c2b4d66-c85e-4148-b3ba-9a8f32478438")
+	)
+	(pad "1" smd rect
+		(at -2.1 1.55)
+		(size 1 1.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "dfe24a34-e488-4521-a6b3-7ee5db8b8793")
+	)
+	(pad "2" smd rect
+		(at 2.1 1.55)
+		(size 1 1.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "c0fd4e62-bf9c-4741-b051-25ce1d4107bf")
+	)
+	(pad "SH" smd rect
+		(at -3.5 -0.4)
+		(size 1.2 1.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "3b5ce86f-a8b8-45b1-8305-b1c5aceef4b5")
+	)
+	(pad "SH" smd rect
+		(at 3.5 -0.4)
+		(size 1.2 1.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "e03cbf3b-0e20-490a-8e91-1f7a298813f2")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/pocketbrain.3dshapes/SW_XKB_TS-1101VS_SidePush.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

@@ -1,0 +1,30 @@
+dependencies:
+  espressif/esp_websocket_client:
+    component_hash: f77326f0e1c38da4e9c97e17c5d649b0dd13027f2645e720e48db269638fd622
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.4.0
+  idf:
+    source:
+      type: idf
+    version: 5.4.3
+  u8g2:
+    component_hash: 581f641f1dae5773c4ca8080acf79cf0ac939626b6987a099e6ce171b4265eba
+    dependencies: []
+    source:
+      git: https://github.com/olikraus/u8g2.git
+      path: .
+      type: git
+    version: d6c8499c5f2707cac8eccd09fd8f677d12b17977
+direct_dependencies:
+- espressif/esp_websocket_client
+- idf
+- u8g2
+manifest_hash: 9ec949cce352e8f93a75ba2990ee2b956ab73ec90f7dd4049789081edd927f31
+target: esp32s3
+version: 2.0.0

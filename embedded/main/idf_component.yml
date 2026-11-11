@@ -1,0 +1,6 @@
+dependencies:
+  idf: ">=5.4.0,<5.5.0"
+  espressif/esp_websocket_client: "1.4.0"
+  u8g2:
+    git: https://github.com/olikraus/u8g2.git
+    version: d6c8499c5f2707cac8eccd09fd8f677d12b17977

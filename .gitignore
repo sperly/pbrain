@@ -1,0 +1,49 @@
+# Private backend configuration, including local backup copies
+/backend/config.php
+/backend/config.php.*
+/PocketBrain_Backend/config.php
+/PocketBrain_Backend/config.php.*
+
+# Environment secrets; keep shareable templates available
+.env
+.env.*
+!.env.example
+!.env.template
+!.env.*.example
+/.aws/
+
+# Python environments, bytecode and tool caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+
+# Build output and local logs
+build/
+dist/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+*.log
+
+# Desktop credentials, transcripts and recordings accidentally stored in the repo
+pocketbrain-desktop/
+/desktop/credentials.json
+/desktop/*-history.json
+/desktop/*-pending.json
+
+# Machine-specific editor settings and OS metadata
+/.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini

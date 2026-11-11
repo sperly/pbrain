@@ -1,0 +1,133 @@
+(footprint "L_Murata_DFE252012"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Murata DFE252012F / DFE252012P metal alloy power inductor, 2.5x2.0x1.2 mm (1008). Land pattern per Murata reference specification JETE243A-0017: two 0.8x2.0 mm lands, 1.2 mm gap. Murata asks for no vias or other copper under the coil. LCSC C703140 (DFE252012F-R47M=P2), alternative C237552 (DFE252012P-R47M=P2).")
+	(tags "inductor power Murata DFE252012F DFE252012P 2520 1008")
+	(property "Reference" "REF**"
+		(at 0 -2.1 0)
+		(layer "F.SilkS")
+		(uuid "5ec3d896-569f-49f3-950f-171dbe08c2ae")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "L_Murata_DFE252012"
+		(at 0 2.1 0)
+		(layer "F.Fab")
+		(uuid "4e95a59e-2cb5-4e45-87b2-4cc81f4608ce")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/71f211ccda62c72737059be4705a2e87.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "dff2c18e-a427-4392-ae13-e303303488fe")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Murata DFE252012F / DFE252012P metal alloy power inductor, 2.5x2.0x1.2 mm (1008). Land pattern per Murata reference specification JETE243A-0017: two 0.8x2.0 mm lands, 1.2 mm gap. Murata asks for no vias or other copper under the coil. LCSC C703140 (DFE252012F-R47M=P2), alternative C237552 (DFE252012P-R47M=P2)."
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6670953a-85c9-4b97-9d84-9b6e56116cb3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -0.3 -1.21)
+		(end 0.3 -1.21)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "bb82dac3-a0b7-4ba5-8917-20883409bb2e")
+	)
+	(fp_line
+		(start -0.3 1.21)
+		(end 0.3 1.21)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "ec334066-c41d-4704-bc81-6e67f29cb656")
+	)
+	(fp_rect
+		(start -1.65 -1.35)
+		(end 1.65 1.35)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "80883779-eaab-4aae-8e63-15376d5b8f9a")
+	)
+	(fp_rect
+		(start -1.25 -1)
+		(end 1.25 1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "86884345-b769-401d-a5f8-bd1ce886f6b6")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "f4b80c2d-2180-4bf8-bf7b-45ca00d12cc9")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.075)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -1 0)
+		(size 0.8 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "b379ed94-8f0f-4d9f-84b8-370d57290a42")
+	)
+	(pad "2" smd rect
+		(at 1 0)
+		(size 0.8 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "629861d3-1967-4868-a530-8c171f4e2d73")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/pocketbrain.3dshapes/L_Murata_DFE252012.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

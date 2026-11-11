@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "pocketbrain") (type "KiCad") (uri "${KIPRJMOD}/pocketbrain.kicad_sym") (options "") (descr "PocketBrain project symbols"))
+)
