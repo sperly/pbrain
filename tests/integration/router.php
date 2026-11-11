@@ -8,4 +8,8 @@ $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 if ($path === '/style.css') {
     return false;
 }
-require $path === '/index.php' ? '/app/public_html/index.php' : '/app/public_html/api.php';
+require match ($path) {
+    '/index.php' => '/app/public_html/index.php',
+    '/legal.php' => '/app/public_html/legal.php',
+    default => '/app/public_html/api.php',
+};

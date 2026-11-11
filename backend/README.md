@@ -11,7 +11,8 @@ endpoint, personal OpenAI API keys, shared conversation history, and retry-safe 
    database and application user. The runtime uses SELECT, INSERT, UPDATE
    and DELETE. Use your hosting panel or a separate setup account for DDL.
 2. On a new database, import `sql/001_initial.sql`,
-   `sql/002_auth_rate_limits.sql`, and `sql/003_user_openai_keys.sql` in order.
+   `sql/002_auth_rate_limits.sql`, `sql/003_user_openai_keys.sql`, and
+   `sql/004_legal_acceptances.sql` in order.
    On existing databases, import only migrations that have not run. If you
    originally imported `PocketBrain_MariaDB_Setup.sql`, that covers migration 001.
 3. Copy config.example.php to config.php and set the database connection
@@ -234,7 +235,7 @@ With Docker available, run from the repository root:
     python3 tests/run_history_integration.py
 
 This builds PHP 8.4 with PDO MySQL, starts a temporary MariaDB 11.4 database,
-imports all three schema migrations, and tests the API through a localhost-only HTTP listener
+imports all four schema migrations, and tests the API through a localhost-only HTTP listener
 with a test-only HTTPS server variable. It checks account isolation, revoked
 credentials, disabled accounts, concurrent retries, conflicting turn IDs,
 pagination, selection, language metadata, and cascading deletion. Temporary
@@ -307,7 +308,7 @@ See [weather documentation](https://open-meteo.com/en/docs),
 Deploy `app/tools.php`, the updated `app/realtime.php`, and
 `public_html/api.php` together, preserving private config. Restart the updated
 desktop app or rebuild/flash the ESP32 firmware. No new database migration is
-needed beyond the personal-key migration 003. Ensure the host permits outbound
+needed for lookups beyond the personal-key migration 003; signup agreement recording also requires migration 004. Ensure the host permits outbound
 HTTPS to `api.openai.com`, `geocoding-api.open-meteo.com`, and `api.open-meteo.com`
 (or the corresponding `customer-` hosts). Allow at least 30 seconds for tool
 requests in the hosting/proxy settings. Older clients that do not handle
@@ -344,3 +345,81 @@ Deploy these three files together for this dashboard update:
 No new SQL migration or private configuration change is needed. Continue to
 keep `config.php` and `app/` outside the public document root. If the browser
 still shows old styling, refresh its cached `style.css`.
+
+## Cookie preferences
+
+The dashboard has Accept/Reject optional-cookie buttons and a footer link to
+change the preference. The choice is remembered for 180 days using a Secure,
+HttpOnly, SameSite=Lax cookie scoped to the configured site path. The sign-in/
+CSRF session cookie remains active for either choice. No optional analytics or
+advertising cookies are currently used; accepting records a preference without
+loading trackers. Requests use the existing CSRF-protected form flow and work
+without JavaScript. Adding optional services later requires gating them on a
+current explicit choice and revising/versioning the notice before enabling them.
+Deploy the updated `public_html/index.php` and `public_html/style.css` together.
+
+
+## Privacy policy, terms, and signup agreements
+
+Public, dated documents are available without signing in:
+
+- `legal.php?document=privacy&version=2026-11-11`
+- `legal.php?document=terms&version=2026-11-11`
+
+The footer links to both documents. Invite signup requires two initially
+unchecked boxes: agreement to the Terms and Conditions and acknowledgement of
+the Privacy Policy. Acknowledgement is not blanket data-processing consent;
+optional-cookie choices remain independent. The server enforces both fields
+and checks document versions/content revision, so removing HTML validation or
+submitting a stale form cannot bypass the requirement.
+
+Import `sql/004_legal_acceptances.sql` once before deploying this signup update.
+It adds `legal_documents` for deduplicated immutable snapshots of the rendered
+texts and `user_legal_acceptances` for user ID, versions, document hashes, and UTC
+acceptance time. Signup, document snapshots, acceptance record, and invitation
+redemption commit together or roll back together. Acceptance does not record
+an extra IP address or user agent. Existing accounts and bootstrap admins are
+not retrospectively recorded as having agreed; this change applies to new
+invitation signups. A future reacceptance flow for existing users is separate.
+
+Deploy the updated `app/accounts.php`, `app/legal.php`, the complete
+`app/legal/` template directory, `public_html/legal.php`, `public_html/index.php`,
+and `public_html/style.css`. Keep the templates outside the public directory.
+The legal page uses an explicit document/version allowlist, not arbitrary query
+paths. Keep private server configuration when uploading.
+
+The texts are **generic drafts**, not a determination that the service complies
+with law. Before opening registration to actual users, complete the public
+operator details in private config:
+
+```php
+'legal_operator_name' => 'Peabrain Systems',
+'legal_contact_email' => 'info@peabrain.se',
+'legal_operator_address' => 'YOUR PUBLIC BUSINESS ADDRESS IF APPLICABLE',
+'legal_documents_reviewed' => false,
+```
+
+Review and customize the templates for the actual service, applicable law,
+legal bases, age eligibility, providers, processing locations/international
+transfer safeguards, retention schedules, and backup/deletion processes. The
+current drafts explicitly identify unresolved facts rather than inventing
+promises. They describe API costs, AI accuracy limits, data sharing, essential
+cookies, local caches, and deletion limitations matching the current app.
+Set `legal_documents_reviewed` to true only after this review; missing operator
+name/email still leaves a visible draft notice. This flag controls the draft
+notice, not the signup agreement checks, and does not certify legal compliance.
+
+For future substantive changes, add new dated template files, extend the archive
+allowlist in `app/legal.php`, and update the corresponding version constants.
+Retain old versions and database snapshots according to the adopted legal-record
+retention policy. Changes to rendered wording/operator details also change the
+content revision and invalidate forms already open; do not silently rewrite
+historical agreements. Keep a reviewed record of required notices and any
+future reacceptance process.
+
+Drafting references:
+[IMY privacy-policy guidance](https://www.imy.se/vanliga-fragor-och-svar/vad-ska-en-integritetspolicy-innehalla/),
+[European Commission information and individual rights](https://commission.europa.eu/law/law-topic/data-protection/information-individuals_en),
+and [IMY lawful grounds](https://www.imy.se/en/organisations/data-protection/this-applies-accordning-to-gdpr/lawful-grounds-for-personal-data-processing/).
+The draft pages do not promise immediate erasure from flash/backups or claim
+that provider processing stays within the EEA.

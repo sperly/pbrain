@@ -64,8 +64,8 @@ the same Live profile to recover a saved question after a restart.
 ## Enable Live mode
 
 1. Deploy the current `backend/` source from this repository using its README.
-   Import all three SQL migrations on a fresh database. Existing installations
-   need `003_user_openai_keys.sql` if it has not run. Enable PHP cURL and OpenSSL.
+   Import all four SQL migrations on a fresh database. Existing installations
+   need migrations 003 and 004 if they have not run. Enable PHP cURL and OpenSSL.
    Use `backend/public_html/` as the site's document root.
 2. Sign in to the web dashboard and add your key under **My OpenAI API key**.
    The encrypted long-lived key stays on the server; your device uses only a

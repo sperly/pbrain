@@ -190,7 +190,7 @@ return ['db_host'=>'db','db_port'=>3306,'db_name'=>'history_test',
                 time.sleep(1)
         else:
             raise RuntimeError("MariaDB did not start")
-        for file in ("001_initial.sql", "002_auth_rate_limits.sql", "003_user_openai_keys.sql"):
+        for file in ("001_initial.sql", "002_auth_rate_limits.sql", "003_user_openai_keys.sql", "004_legal_acceptances.sql"):
             sql((ROOT / "backend/sql" / file).read_text())
         sql("INSERT INTO users (email,password_hash) VALUES ('one@example.test','unused'),('two@example.test','unused');")
         for number, token in enumerate(TOKENS):
@@ -218,6 +218,10 @@ return ['db_host'=>'db','db_port'=>3306,'db_name'=>'history_test',
         suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(LiveToolsIntegration))
         from web_history_integration import WebHistoryIntegration
         suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(WebHistoryIntegration))
+        from cookie_consent_integration import CookieConsentIntegration
+        suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(CookieConsentIntegration))
+        from legal_signup_integration import LegalSignupIntegration
+        suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(LegalSignupIntegration))
         result = unittest.TextTestRunner(verbosity=2).run(suite)
         if not result.wasSuccessful():
             print(docker("logs", app))

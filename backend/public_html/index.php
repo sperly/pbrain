@@ -11,7 +11,7 @@ header('Content-Type: text/html; charset=UTF-8');
 header('Cache-Control: no-store');
 header('Referrer-Policy: no-referrer');
 header('X-Content-Type-Options: nosniff');
-header("Content-Security-Policy: default-src 'none'; style-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'");
+header("Content-Security-Policy: default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'");
 
 function h(string|int|null $value): string
 {
@@ -64,6 +64,20 @@ function csrfInput(): void
     echo '<input type="hidden" name="csrf" value="' . h($_SESSION['csrf']) . '">';
 }
 
+function cookieChoiceUrl(bool $settings = false): string
+{
+    $params = [];
+    foreach (['device', 'conversation', 'offset', 'after_id'] as $key) {
+        if (is_string($_GET[$key] ?? null)) {
+            $params[$key] = $_GET[$key];
+        }
+    }
+    if ($settings) {
+        $params['cookie-settings'] = '1';
+    }
+    return 'index.php' . ($params ? '?' . http_build_query($params) : '');
+}
+
 function redirect(string $anchor = ''): never
 {
     header('Location: index.php' . $anchor, true, 303);
@@ -95,6 +109,12 @@ if (!isHttps()) {
     http_response_code(400);
     exit('HTTPS is required.');
 }
+
+$cookieChoice = $_COOKIE['PocketBrainCookieConsent'] ?? null;
+if (!in_array($cookieChoice, ['accepted', 'rejected'], true)) {
+    $cookieChoice = null;
+}
+$showCookieBanner = $cookieChoice === null || ($_GET['cookie-settings'] ?? '') === '1';
 
 try {
     $cookiePath = rtrim(parse_url(config()['base_url'], PHP_URL_PATH) ?? '', '/') . '/';
@@ -146,6 +166,21 @@ try {
         }
 
         switch (field('action')) {
+            case 'cookie-accept':
+            case 'cookie-reject':
+                $choice = field('action') === 'cookie-accept' ? 'accepted' : 'rejected';
+                if (!setcookie('PocketBrainCookieConsent', $choice, [
+                    'expires' => time() + 180 * 86400,
+                    'path' => $cookiePath,
+                    'secure' => true,
+                    'httponly' => true,
+                    'samesite' => 'Lax',
+                ])) {
+                    throw new RuntimeException('Could not save cookie preference');
+                }
+                header('Location: ' . cookieChoiceUrl(), true, 303);
+                exit;
+
             case 'sign-in':
                 if ($user !== false) {
                     redirect();
@@ -179,12 +214,20 @@ try {
                 if (!rateAllowed('signup-ip', clientIp(), 15, 300)) {
                     notifyAndRedirect('Too many signup attempts. Try again in a few minutes.');
                 }
+                $acceptance = currentLegalAcceptance();
+                if (field('accept_terms') !== '1' || field('acknowledge_privacy') !== '1') {
+                    notifyAndRedirect('Agree to the terms and acknowledge the privacy policy to create an account.');
+                }
+                if (field('terms_version') !== TERMS_VERSION || field('privacy_version') !== PRIVACY_VERSION
+                    || !hash_equals(legalRevision($acceptance), field('legal_revision'))) {
+                    notifyAndRedirect('The terms or privacy policy changed. Read the current versions and submit again.');
+                }
                 $email = normalizedEmail(field('email'));
                 $password = field('password');
                 if ($email === null || !validPassword($password) || $password !== field('confirmation')) {
                     notifyAndRedirect('Enter a valid email and matching passwords of 15 to 72 bytes.');
                 }
-                if (!redeemInvite($_SESSION['invite_hash'], $email, $password)) {
+                if (!redeemInvite($_SESSION['invite_hash'], $email, $password, $acceptance)) {
                     notifyAndRedirect('Could not create the account. Check the email or request a fresh invitation.');
                 }
                 unset($_SESSION['invite_hash']);
@@ -264,6 +307,7 @@ try {
     $message = $_SESSION['message'] ?? '';
     $newInvite = $_SESSION['new_invite'] ?? '';
     $signup = isset($_SESSION['invite_hash']);
+    $signupLegal = $signup ? currentLegalAcceptance() : null;
     unset($_SESSION['message'], $_SESSION['new_invite']);
     $devices = [];
     $invitations = [];
@@ -320,13 +364,14 @@ try {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/pocketbrain-icon.svg">
     <title>PocketBrain</title>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <main id="main">
     <header class="site-header">
-        <a class="brand" href="index.php"><span class="brand-mark" aria-hidden="true">p.</span><span>PocketBrain<span class="brand-caption">A little space for your thoughts.</span></span></a>
+        <a class="brand" href="index.php"><img class="brand-logo" src="assets/pocketbrain-web.svg" alt="PocketBrain" width="489" height="125"><span class="brand-caption">A little space for your thoughts.</span></a>
         <?php if ($user !== false): ?>
             <form method="post" class="account-menu">
                 <?php csrfInput(); ?>
@@ -335,6 +380,21 @@ try {
             </form>
         <?php endif; ?>
     </header>
+    <?php if ($showCookieBanner): ?>
+        <aside class="cookie-banner" id="cookie-banner" aria-labelledby="cookie-title">
+            <div class="cookie-copy">
+                <h2 id="cookie-title">Your cookie choice</h2>
+                <p>Essential cookies keep you signed in, protect forms, and remember this choice.
+                   They stay active with either option. No optional analytics or advertising cookies are currently used.</p>
+                <?php if ($cookieChoice !== null): ?><p class="cookie-saved">Your saved choice: <?= $cookieChoice === 'accepted' ? 'accept' : 'reject' ?> optional cookies.</p><?php endif; ?>
+            </div>
+            <form method="post" action="<?= h(cookieChoiceUrl()) ?>" class="cookie-actions">
+                <?php csrfInput(); ?>
+                <button class="secondary" name="action" value="cookie-accept">Accept optional cookies</button>
+                <button class="secondary" name="action" value="cookie-reject">Reject optional cookies</button>
+            </form>
+        </aside>
+    <?php endif; ?>
     <?php if ($message !== ''): ?><p class="message" role="status"><?= h($message) ?></p><?php endif; ?>
 
     <?php if ($user === false && $signup): ?>
@@ -344,6 +404,13 @@ try {
             <label>Email <input type="email" name="email" maxlength="254" autocomplete="email" required></label>
             <label>Password <input type="password" name="password" minlength="15" maxlength="72" autocomplete="new-password" required></label>
             <label>Confirm password <input type="password" name="confirmation" minlength="15" maxlength="72" autocomplete="new-password" required></label>
+            <?php if (legalIsDraft()): ?><p class="legal-draft-note">These are draft policies. The operator must complete and review them before opening registration to users.</p><?php endif; ?>
+            <input type="hidden" name="terms_version" value="<?= h(TERMS_VERSION) ?>">
+            <input type="hidden" name="privacy_version" value="<?= h(PRIVACY_VERSION) ?>">
+            <input type="hidden" name="legal_revision" value="<?= h(legalRevision($signupLegal)) ?>">
+            <label class="checkbox-label"><input type="checkbox" name="accept_terms" value="1" required><span>I agree to the <a href="<?= h(legalUrl('terms')) ?>" target="_blank" rel="noopener noreferrer">Terms and Conditions</a>.</span></label>
+            <label class="checkbox-label"><input type="checkbox" name="acknowledge_privacy" value="1" required><span>I have read the <a href="<?= h(legalUrl('privacy')) ?>" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</span></label>
+            <p class="signup-legal-note">Optional-cookie choices are separate from signup. Your agreement and policy acknowledgement are recorded with the document versions and time.</p>
             <button name="action" value="sign-up">Create account</button>
             <button name="action" value="cancel-signup" formnovalidate>Back to sign in</button>
         </form>
@@ -539,7 +606,11 @@ try {
             </section>
         <?php endif; ?>
     <?php endif; ?>
-<footer class="site-footer">PocketBrain · A little thought goes a long way.</footer>
+<footer class="site-footer"><span>PocketBrain · A little thought goes a long way.</span>
+    <a href="<?= h(legalUrl('privacy')) ?>">Privacy policy</a>
+    <a href="<?= h(legalUrl('terms')) ?>">Terms and conditions</a>
+    <a href="<?= h(cookieChoiceUrl(true)) ?>#cookie-banner">Cookie preferences</a>
+</footer>
 </main>
 </body>
 </html>

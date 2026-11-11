@@ -15,11 +15,16 @@ function authenticate(string $email, string $password): array|false
     return $usable && $verified ? $user : false;
 }
 
-function redeemInvite(string $digest, string $email, string $password): bool
+require_once __DIR__ . '/legal.php';
+
+function redeemInvite(string $digest, string $email, string $password, array $acceptance): bool
 {
+    if ($acceptance !== currentLegalAcceptance()) {
+        return false;
+    }
     $passwordHash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
     try {
-        return transaction(function () use ($digest, $email, $passwordHash): bool {
+        return transaction(function () use ($digest, $email, $passwordHash, $acceptance): bool {
             $inviteId = query(
                 'SELECT id FROM invitations
                  WHERE token_hash = UNHEX(?) AND revoked_at IS NULL AND redeemed_at IS NULL
@@ -32,6 +37,17 @@ function redeemInvite(string $digest, string $email, string $password): bool
 
             query('INSERT INTO users (email, password_hash) VALUES (?, ?)', [$email, $passwordHash]);
             $userId = db()->lastInsertId();
+            foreach (['terms', 'privacy'] as $document) {
+                query('INSERT INTO legal_documents (document_sha256, document_type, version, document_html)
+                       VALUES (UNHEX(?), ?, ?, ?) ON DUPLICATE KEY UPDATE document_sha256 = VALUES(document_sha256)',
+                      [$acceptance[$document . '_sha256'], $document, $acceptance[$document . '_version'],
+                       legalDocument($document, $acceptance[$document . '_version'])]);
+            }
+            query('INSERT INTO user_legal_acceptances
+                   (user_id, terms_version, privacy_version, terms_sha256, privacy_sha256)
+                   VALUES (?, ?, ?, UNHEX(?), UNHEX(?))',
+                  [$userId, $acceptance['terms_version'], $acceptance['privacy_version'],
+                   $acceptance['terms_sha256'], $acceptance['privacy_sha256']]);
             $updated = query(
                 'UPDATE invitations SET redeemed_by_user_id = ?, redeemed_at = CURRENT_TIMESTAMP(6)
                  WHERE id = ? AND expires_at > CURRENT_TIMESTAMP(6)',

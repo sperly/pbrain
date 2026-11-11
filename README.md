@@ -17,8 +17,8 @@ while retaining their private configuration and database.
 
 1. Run the desktop app in **Demo**, then **Loopback**, using its README.
 2. Set up the PHP backend on the HTTPS host. On a fresh database, import
-   all three SQL migrations in order. On existing databases, import only
-   migrations that have not run, including `003_user_openai_keys.sql`.
+   all four SQL migrations in order. On existing databases, import only
+   migrations that have not run, including `003_user_openai_keys.sql` and `004_legal_acceptances.sql`.
    Set DB credentials and a stable application key in the private config.
    Each user adds their OpenAI API key through the dashboard; shared site
    billing requires an explicit opt-in setting.

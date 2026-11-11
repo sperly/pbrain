@@ -37,9 +37,13 @@ class Browser:
         cookies = SimpleCookie()
         for value in reply.headers.get_all("Set-Cookie", []):
             cookies.load(value)
-        if "PocketBrain" in cookies:
-            # Test router emulates HTTPS on a localhost HTTP listener.
-            self.cookie = "PocketBrain=" + cookies["PocketBrain"].value
+        current = SimpleCookie()
+        current.load(self.cookie)
+        for name, value in cookies.items():
+            current[name] = value.value
+        # Test router emulates HTTPS; send its Secure cookies manually on localhost.
+        self.cookie = "; ".join(name + "=" + value.value for name, value in current.items())
+        self.last_headers = reply.headers
         text = reply.read().decode()
         match = re.search(r'name="csrf" value="([a-f0-9]{64})"', text)
         if match:

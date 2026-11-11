@@ -21,4 +21,10 @@ return [
     'openai_search_model' => 'gpt-5.4-mini',
     // Optional Open-Meteo subscription key for commercial hosting.
     'open_meteo_api_key' => '',
+    // Public operator details for legal pages. Never put private contact data here.
+    'legal_operator_name' => 'Peabrain Systems',
+    'legal_contact_email' => 'info@peabrain.se',
+    'legal_operator_address' => '',
+    // Set true only after completing and reviewing the draft policies.
+    'legal_documents_reviewed' => false,
 ];
